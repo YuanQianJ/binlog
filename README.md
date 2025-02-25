@@ -18,7 +18,7 @@ A lightweight MySQL binlog listener with Redis position persistence, written in 
 
 ```bash
 go get github.com/YuanQianJ/binlog/tree/master/binlog
-
+```
 ## 🚀 Quick Start
 ```
 package main
