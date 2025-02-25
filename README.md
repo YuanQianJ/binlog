@@ -20,16 +20,8 @@ A lightweight MySQL binlog listener with Redis position persistence, written in 
 go get github.com/YuanQianJ/binlog/tree/master/binlog
 ```
 ## 🚀 Quick Start
+#1. Implement Event Handler
 ```
-package main
-
-import (
-	"binlog/binlog"
-	"fmt"
-
-	"github.com/go-redis/redis/v8"
-)
-
 type MyTableSchema struct {
 	Id       string `db:"id"`
 	User       string `db:"user"`
@@ -70,7 +62,9 @@ func (h *MyEventHandler) OnInsert(data ...any) {
 func (h *MyEventHandler) Schema() any {
 	return &MyTableSchema{}
 }
-func main() {
+```
+#2. Initialize Listener
+```
 	rdb := redis.NewClient(&redis.Options{
 		Addr: "",
 	})
@@ -89,7 +83,9 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-
+```
+#3. Register Handlers & Run
+'''
 	handler := &MyEventHandler{}
 	listener.RegisterEventHandler(handler)
 
@@ -101,5 +97,5 @@ func main() {
 	if err := listener.Run(); err != nil {
 		panic(err)
 	}
-}
 ```
+
