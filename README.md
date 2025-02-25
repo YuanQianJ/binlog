@@ -85,7 +85,7 @@ func (h *MyEventHandler) Schema() any {
 	}
 ```
 # 3. Register Handlers & Run
-'''
+```
 	handler := &MyEventHandler{}
 	listener.RegisterEventHandler(handler)
 
